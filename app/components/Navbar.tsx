@@ -2,6 +2,7 @@
 import React from "react";
 import { Lora, Nunito } from "next/font/google";
 import { signIn, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -15,6 +16,11 @@ const nunito = Nunito({
 
 export default function Navbar() {
   const session = useSession();
+  const pathname = usePathname();
+
+  if (pathname === "/auth/signin") {
+    return null;
+  }
 
   return (
     <div className="h-[10vh] flex justify-around items-center border-b-2 border-espresso">
@@ -38,11 +44,17 @@ export default function Navbar() {
             <li>Profile</li>
           ) : (
             <>
-              <li className="cursor-pointer hover:opacity-95 relative group" onClick={() => signIn()}>
+              <li
+                className="cursor-pointer hover:opacity-95 relative group"
+                onClick={() => signIn()}
+              >
                 Login
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-espresso opacity-95 transition-all duration-300 group-hover:w-full"></span>
               </li>
-              <li className="cursor-pointer hover:opacity-95 relative group" onClick={() => signIn()}>
+              <li
+                className="cursor-pointer hover:opacity-95 relative group"
+                onClick={() => signIn()}
+              >
                 Sign up
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-espresso opacity-95 transition-all duration-300 group-hover:w-full"></span>
               </li>

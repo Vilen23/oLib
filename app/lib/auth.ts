@@ -33,7 +33,7 @@ export const NEXT_AUTH = {
   ],
   secret: "Hello",
   pages: {
-    signIn: "/",
+    signIn: "/auth/signin",
   },
   callbacsk: {
     async jwt({ token, user }: any) {
